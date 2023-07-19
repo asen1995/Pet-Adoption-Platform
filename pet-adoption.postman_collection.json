@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "4d37b4c8-b01e-4488-b966-d954fe09c99a",
+		"name": "pet-adoption",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PetCreate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"John\",\r\n    \"age\" : 2,\r\n    \"category\" : \"DOG\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9999/v1/pets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9999",
+					"path": [
+						"v1",
+						"pets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPet",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9999/v1/pets/64b7e1b04767dd35c9ebcaa8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9999",
+					"path": [
+						"v1",
+						"pets",
+						"64b7e1b04767dd35c9ebcaa8"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
