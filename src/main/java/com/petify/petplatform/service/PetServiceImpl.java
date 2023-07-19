@@ -25,7 +25,7 @@ public class PetServiceImpl implements IPetService {
         this.petRepository = petRepository;
     }
     @Override
-    public PetDto createPet(PetDto petDto) {
+    public String createPet(PetDto petDto) {
 
         logger.info("Creating pet starting...");
 
@@ -35,6 +35,6 @@ public class PetServiceImpl implements IPetService {
 
         logger.info("Pet saved successfully");
 
-        return petDto;
+        return saved.getId();
     }
 }
