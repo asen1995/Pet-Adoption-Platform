@@ -1,5 +1,6 @@
 package com.petify.petplatform.service;
 
+import com.petify.petplatform.exception.PetNotFoundException;
 import com.petify.petplatform.mapper.PetMapper;
 import com.petify.petplatform.model.PetDto;
 import com.petify.petplatform.mongo.document.PetItem;
@@ -45,7 +46,7 @@ public class PetServiceImpl implements IPetService {
     public PetDto getPetById(String id) {
 
         logger.info("Getting pet with id: {}", id);
-        PetItem petItem = petRepository.findById(id).orElseThrow(() -> new RuntimeException("Pet not found"));
+        PetItem petItem = petRepository.findById(id).orElseThrow(() -> new PetNotFoundException());
 
         PetDto petDto = petMapper.toPetDto(petItem);
         logger.info("Pet with id: {} successfully got", id);
