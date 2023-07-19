@@ -10,6 +10,8 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
 public class PetServiceImpl implements IPetService {
 
@@ -30,6 +32,8 @@ public class PetServiceImpl implements IPetService {
         logger.info("Creating pet starting...");
 
         PetItem petItem = petMapper.toPetItem(petDto);
+        petItem.setRegisteredDate(new Date());
+
         PetItem saved = petRepository.save(petItem);
 
         logger.info("Pet saved successfully");
