@@ -8,10 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
@@ -41,6 +38,20 @@ public class PetController {
         return ResponseEntity.created(URI.create(URICreator.getSelfLink(id)))
                 .body(id);
 
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PetDto> get(@PathVariable String id) {
+
+        if(id == null || id.isEmpty()) {
+            throw new IllegalArgumentException("Id cannot be null or empty");
+        }
+
+        logger.info("Getting pet with id: {}", id);
+        PetDto petDto = petService.getPetById(id);
+        logger.info("Pet with id: {} successfully got", id);
+
+        return ResponseEntity.ok(petDto);
     }
 
 }

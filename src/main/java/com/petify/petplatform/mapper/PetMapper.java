@@ -8,4 +8,6 @@ import org.mapstruct.Mapper;
 public interface PetMapper {
 
     PetItem toPetItem(PetDto petDto);
+
+    PetDto toPetDto(PetItem petItem);
 }

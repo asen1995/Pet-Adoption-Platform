@@ -4,4 +4,6 @@ import com.petify.petplatform.model.PetDto;
 
 public interface IPetService {
     String createPet(PetDto petDto);
+
+    PetDto getPetById(String id);
 }

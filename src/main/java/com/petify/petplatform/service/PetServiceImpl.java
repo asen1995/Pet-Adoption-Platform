@@ -32,9 +32,20 @@ public class PetServiceImpl implements IPetService {
         PetItem petItem = petMapper.toPetItem(petDto);
         PetItem saved = petRepository.save(petItem);
 
-
         logger.info("Pet saved successfully");
 
         return saved.getId();
+    }
+
+    @Override
+    public PetDto getPetById(String id) {
+
+        logger.info("Getting pet with id: {}", id);
+        PetItem petItem = petRepository.findById(id).orElseThrow(() -> new RuntimeException("Pet not found"));
+
+        PetDto petDto = petMapper.toPetDto(petItem);
+        logger.info("Pet with id: {} successfully got", id);
+
+        return petDto;
     }
 }
