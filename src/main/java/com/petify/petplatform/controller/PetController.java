@@ -28,7 +28,7 @@ public class PetController {
 
 
     @PostMapping
-    public ResponseEntity<?> create(@Valid @RequestBody PetDto productDto) {
+    public ResponseEntity<String> create(@Valid @RequestBody PetDto productDto) {
 
         logger.info("Creating pet starting...");
         String id = petService.createPet(productDto);
