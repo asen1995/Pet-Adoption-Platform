@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -43,10 +44,11 @@ public class PetServiceImpl implements IPetService {
     }
 
     @Override
+    @Cacheable("pets")
     public PetDto getPetById(String id) {
 
         logger.info("Getting pet with id: {}", id);
-        PetItem petItem = petRepository.findById(id).orElseThrow(() -> new PetNotFoundException());
+        PetItem petItem = petRepository.findById(id).orElseThrow(PetNotFoundException::new);
 
         PetDto petDto = petMapper.toPetDto(petItem);
         logger.info("Pet with id: {} successfully got", id);
